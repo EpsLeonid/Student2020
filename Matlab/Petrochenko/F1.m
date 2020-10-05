@@ -1,5 +1,5 @@
 function y = F1(A, t, tau1, tau2)
-y=zeros(1,length(t)); % auxiliary buffer filled with zeros
+y=zeros(1,length(t));
 for i=1:length(t)
     if t(i)<0     % check t for negativity
        y(i)=0;
