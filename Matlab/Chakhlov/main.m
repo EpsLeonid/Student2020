@@ -8,7 +8,7 @@ k=10;
 l=6;
 M=16;
 y = try1(t, A, t1, t2) 
-s = try2(k, l, M, t, A, t1, t2, y);
+s = try2(k, l, M, t, y);
 % построение графиков
 figure; 
 plot(t,y,'green')

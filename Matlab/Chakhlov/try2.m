@@ -1,4 +1,4 @@
-function [s] = try2(k, l, M, t, A, t1, t2, y)
+function [s] = try2(k, l, M, t, y)
 
 d = 1:1:length(t);
    for i=1:1:length(t)
