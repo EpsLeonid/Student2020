@@ -8,12 +8,12 @@ k=10;
 l=6;
 M=16;
 y = try1(t, A, t1, t2) 
-s = try2(k, l, M, t, A, t1, t2)
+s = try2(k, l, M, t, A, t1, t2, y);
 % построение графиков
 figure; 
-plot(t,y)
+plot(t,y,'green')
 grid on;   
 
 figure;
-plot(t,s) 
+plot(t,s,'red') 
 grid on;   
