@@ -10,6 +10,6 @@ output reg [15:0]data;
 
 always @(posedge clk)
 
-data <= A*B+C
+data <= A*B+C;
 
 endmodule
