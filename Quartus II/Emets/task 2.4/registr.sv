@@ -9,7 +9,7 @@ input reg [7:0]C;
 output reg [15:0]data;
 
 always @(posedge clk)
-
+begin
 data <= A*B+C;
-
+end
 endmodule
