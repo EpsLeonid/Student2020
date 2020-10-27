@@ -1,5 +1,5 @@
 module registr(clk, data, A,B,C);
-import  registr_parameter ::*;
+import  registr_parameter ::width;
 input wire clk;
 
 input reg [width-1:0]A;
