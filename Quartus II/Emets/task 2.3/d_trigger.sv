@@ -5,7 +5,7 @@ input wire d;
 output reg out;
 
 always @(posedge clk)
-
-assign out <= d;
-
+begin
+out <= d;
+end
 endmodule
