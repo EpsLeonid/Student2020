@@ -1,6 +1,6 @@
 package Bits;
 
-	parameter SIZE = 4;
+	parameter SIZE = 8;
 
 	
 endpackage
