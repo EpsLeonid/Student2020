@@ -22,10 +22,10 @@ module v2_filter(	clk,
 	reg signed [SIZE_ADC_DATA + 5:0] D2, D1;
 	reg signed [SIZE_ADC_DATA + 5:0] M1;	
 	
-	always @(posedge clk or negedge reset)// пока тактовый сигнал действует и не подан сброс
+	always @(posedge clk or posedge reset)// пока тактовый сигнал действует и не подан сброс
 
 		begin
-	if (!reset)
+	if (reset)
 		begin
 // при активации сброса, данные обнуляются, а массив D необходимо отчистить
 		D[0] <= 0;
