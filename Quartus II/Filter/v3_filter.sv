@@ -14,7 +14,6 @@ module v3_filter
 	reg					[SIZE_ADC_DATA-1:0]s;
 	reg					[SIZE_ADC_DATA-1:0]d_l;
 	reg					[SIZE_ADC_DATA-1:0]d_k;
-	reg					[SIZE_ADC_DATA-1:0]kdl;
 	
 	reg                 [2*SIZE_ADC_DATA-1:0]mult_1;
 	reg                 [2*SIZE_ADC_DATA-1:0]mult_2;
