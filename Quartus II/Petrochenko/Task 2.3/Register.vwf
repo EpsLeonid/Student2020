@@ -494,7 +494,7 @@ SIGNAL("mult[0]")
 	PARENT = "mult";
 }
 
-SIGNAL("summ")
+SIGNAL("Output_data")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = BUS;
@@ -504,164 +504,164 @@ SIGNAL("summ")
 	PARENT = "";
 }
 
-SIGNAL("summ[15]")
+SIGNAL("Output_data[15]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[14]")
+SIGNAL("Output_data[14]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[13]")
+SIGNAL("Output_data[13]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[12]")
+SIGNAL("Output_data[12]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[11]")
+SIGNAL("Output_data[11]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[10]")
+SIGNAL("Output_data[10]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[9]")
+SIGNAL("Output_data[9]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[8]")
+SIGNAL("Output_data[8]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[7]")
+SIGNAL("Output_data[7]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[6]")
+SIGNAL("Output_data[6]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[5]")
+SIGNAL("Output_data[5]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[4]")
+SIGNAL("Output_data[4]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[3]")
+SIGNAL("Output_data[3]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[2]")
+SIGNAL("Output_data[2]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[1]")
+SIGNAL("Output_data[1]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
-SIGNAL("summ[0]")
+SIGNAL("Output_data[0]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "summ";
+	PARENT = "Output_data";
 }
 
 TRANSITION_LIST("Adata_in[7]")
@@ -3445,7 +3445,7 @@ TRANSITION_LIST("mult[0]")
 	}
 }
 
-TRANSITION_LIST("summ[15]")
+TRANSITION_LIST("Output_data[15]")
 {
 	NODE
 	{
@@ -3454,7 +3454,7 @@ TRANSITION_LIST("summ[15]")
 	}
 }
 
-TRANSITION_LIST("summ[14]")
+TRANSITION_LIST("Output_data[14]")
 {
 	NODE
 	{
@@ -3463,7 +3463,7 @@ TRANSITION_LIST("summ[14]")
 	}
 }
 
-TRANSITION_LIST("summ[13]")
+TRANSITION_LIST("Output_data[13]")
 {
 	NODE
 	{
@@ -3472,7 +3472,7 @@ TRANSITION_LIST("summ[13]")
 	}
 }
 
-TRANSITION_LIST("summ[12]")
+TRANSITION_LIST("Output_data[12]")
 {
 	NODE
 	{
@@ -3481,7 +3481,7 @@ TRANSITION_LIST("summ[12]")
 	}
 }
 
-TRANSITION_LIST("summ[11]")
+TRANSITION_LIST("Output_data[11]")
 {
 	NODE
 	{
@@ -3490,7 +3490,7 @@ TRANSITION_LIST("summ[11]")
 	}
 }
 
-TRANSITION_LIST("summ[10]")
+TRANSITION_LIST("Output_data[10]")
 {
 	NODE
 	{
@@ -3499,7 +3499,7 @@ TRANSITION_LIST("summ[10]")
 	}
 }
 
-TRANSITION_LIST("summ[9]")
+TRANSITION_LIST("Output_data[9]")
 {
 	NODE
 	{
@@ -3508,7 +3508,7 @@ TRANSITION_LIST("summ[9]")
 	}
 }
 
-TRANSITION_LIST("summ[8]")
+TRANSITION_LIST("Output_data[8]")
 {
 	NODE
 	{
@@ -3517,7 +3517,7 @@ TRANSITION_LIST("summ[8]")
 	}
 }
 
-TRANSITION_LIST("summ[7]")
+TRANSITION_LIST("Output_data[7]")
 {
 	NODE
 	{
@@ -3526,7 +3526,7 @@ TRANSITION_LIST("summ[7]")
 	}
 }
 
-TRANSITION_LIST("summ[6]")
+TRANSITION_LIST("Output_data[6]")
 {
 	NODE
 	{
@@ -3535,7 +3535,7 @@ TRANSITION_LIST("summ[6]")
 	}
 }
 
-TRANSITION_LIST("summ[5]")
+TRANSITION_LIST("Output_data[5]")
 {
 	NODE
 	{
@@ -3544,7 +3544,7 @@ TRANSITION_LIST("summ[5]")
 	}
 }
 
-TRANSITION_LIST("summ[4]")
+TRANSITION_LIST("Output_data[4]")
 {
 	NODE
 	{
@@ -3553,7 +3553,7 @@ TRANSITION_LIST("summ[4]")
 	}
 }
 
-TRANSITION_LIST("summ[3]")
+TRANSITION_LIST("Output_data[3]")
 {
 	NODE
 	{
@@ -3562,7 +3562,7 @@ TRANSITION_LIST("summ[3]")
 	}
 }
 
-TRANSITION_LIST("summ[2]")
+TRANSITION_LIST("Output_data[2]")
 {
 	NODE
 	{
@@ -3571,7 +3571,7 @@ TRANSITION_LIST("summ[2]")
 	}
 }
 
-TRANSITION_LIST("summ[1]")
+TRANSITION_LIST("Output_data[1]")
 {
 	NODE
 	{
@@ -3580,7 +3580,7 @@ TRANSITION_LIST("summ[1]")
 	}
 }
 
-TRANSITION_LIST("summ[0]")
+TRANSITION_LIST("Output_data[0]")
 {
 	NODE
 	{
@@ -4040,7 +4040,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ";
+	CHANNEL = "Output_data";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 45;
@@ -4050,7 +4050,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[15]";
+	CHANNEL = "Output_data[15]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 46;
@@ -4060,7 +4060,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[14]";
+	CHANNEL = "Output_data[14]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 47;
@@ -4070,7 +4070,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[13]";
+	CHANNEL = "Output_data[13]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 48;
@@ -4080,7 +4080,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[12]";
+	CHANNEL = "Output_data[12]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 49;
@@ -4090,7 +4090,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[11]";
+	CHANNEL = "Output_data[11]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 50;
@@ -4100,7 +4100,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[10]";
+	CHANNEL = "Output_data[10]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 51;
@@ -4110,7 +4110,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[9]";
+	CHANNEL = "Output_data[9]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 52;
@@ -4120,7 +4120,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[8]";
+	CHANNEL = "Output_data[8]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 53;
@@ -4130,7 +4130,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[7]";
+	CHANNEL = "Output_data[7]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 54;
@@ -4140,7 +4140,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[6]";
+	CHANNEL = "Output_data[6]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 55;
@@ -4150,7 +4150,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[5]";
+	CHANNEL = "Output_data[5]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 56;
@@ -4160,7 +4160,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[4]";
+	CHANNEL = "Output_data[4]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 57;
@@ -4170,7 +4170,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[3]";
+	CHANNEL = "Output_data[3]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 58;
@@ -4180,7 +4180,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[2]";
+	CHANNEL = "Output_data[2]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 59;
@@ -4190,7 +4190,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[1]";
+	CHANNEL = "Output_data[1]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 60;
@@ -4200,7 +4200,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "summ[0]";
+	CHANNEL = "Output_data[0]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Unsigned;
 	TREE_INDEX = 61;
