@@ -46,7 +46,7 @@ module filter (
 	output wire [SIZE_FILTER_DATA-1:0]						output_data_v4,
 	output wire [SIZE_FILTER_DATA-1:0]						output_data_v5,
 	output wire [SIZE_FILTER_DATA-1:0]						output_data_v6,
-	output wire [SIZE_FILTER_DATA-1:0]						output_data_v7,
+	output wire [SIZE_FILTER_DATA+10:0]						output_data_v7,
 	output wire [SIZE_FILTER_DATA-1:0]						output_data_v8,
 	output wire [SIZE_FILTER_DATA-1:0]						output_data_v9,
 	output wire [SIZE_FILTER_DATA-1:0]						output_data_v10);
@@ -106,13 +106,13 @@ module filter (
 		.reset                                                (reset),
 		.input_data                                           (output_data_exp_sig_gen),
 		.output_data                                          (output_data_v6));
-
+*/
 	v7_filter FilterV7 (
 		.clk                                                  (clk),
 		.reset                                                (reset),
 		.input_data                                           (output_data_exp_sig_gen),
 		.output_data                                          (output_data_v7));
-
+/*
 	v8_filter FilterV8 (
 		.clk                                                  (clk),
 		.reset                                                (reset),

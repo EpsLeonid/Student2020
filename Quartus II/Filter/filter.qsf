@@ -61,8 +61,7 @@ set_global_assignment -name SIMULATION_MODE "TIMING USING FAST TIMING MODEL"
 
 
 
-set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
-set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
+set_global_assignment -name SYSTEMVERILOG_FILE v7_param.sv
 set_global_assignment -name SYSTEMVERILOG_FILE package_settings.sv
 set_global_assignment -name SYSTEMVERILOG_FILE parameters_v2.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
