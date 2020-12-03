@@ -21,6 +21,7 @@
  *  	ram_exp_sig_gen,
  *  	rom_exp_sig_gen*/
 //-----------------------------------------------------------------------------
+import v7_param::*;
 import package_settings::*;
 //-----------------------------------------------------------------------------
 module filter (
@@ -46,7 +47,7 @@ module filter (
 	output wire [SIZE_FILTER_DATA-1:0]						output_data_v4,
 	output wire [SIZE_FILTER_DATA-1:0]						output_data_v5,
 	output wire [SIZE_FILTER_DATA-1:0]						output_data_v6,
-	output wire [SIZE_FILTER_DATA+10:0]						output_data_v7,
+	output wire [SIZE_FILTER_DATA+(M_length_var7-2):0]		output_data_v7,
 	output wire [SIZE_FILTER_DATA-1:0]						output_data_v8,
 	output wire [SIZE_FILTER_DATA-1:0]						output_data_v9,
 	output wire [SIZE_FILTER_DATA-1:0]						output_data_v10);
