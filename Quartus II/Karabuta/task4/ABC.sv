@@ -20,21 +20,16 @@ begin
 	A_data <= A;
 	B_data <= B;
 	C_data <= C;
-	C_data_shifted <= C_data;	
+	C_data_shifted <= C_data;
+	ouput_data <= result_multiplier + C_data_shifted;	
 end
-
-
-			
-always @(posedge clk)
+		
+always @(negedge clk)
 begin
-	result_multiplier <= A_data * B_data; 
-end
 
-always @(posedge clk)
-begin
-	ouput_data <= result_multiplier + C_data_shifted; 
+	result_multiplier <= A_data * B_data;
+	 
 end
-
 assign DATA = ouput_data;
 
 endmodule
