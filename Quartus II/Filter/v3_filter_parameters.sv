@@ -1,9 +1,9 @@
 package v3_filter_parameters;
 
-parameter m1=16;
-parameter m2=1;
-parameter k=11;
-parameter l=5;
-parameter SIZE_ADC_DATA = 20;
 
+parameter v3_k=11;
+parameter v3_l=5;
+parameter v3_m1=16;
+parameter v3_m2=1;
+parameter SIZE = 20;
 endpackage
