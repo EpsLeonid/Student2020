@@ -20,7 +20,6 @@ reg [SIZE_ADC_DATA+6:0] V [K+L:0];
 reg [SIZE_ADC_DATA+6:0] D;
 reg	[SIZE_ADC_DATA+6:0] D1;
 reg	[SIZE_ADC_DATA+6:0] D2;
-reg	[SIZE_ADC_DATA+6:0] P1;
 
 always @( posedge clk or posedge !reset)
 begin 
@@ -33,8 +32,7 @@ begin
 		D <= 0;	
 		D1 <= 0;	
 		D2 <= 0;	
-		P <= 0;	
-		P1 <= 0;	
+		P <= 0;		
 		R <= 0;	
 		S <= 0;	
 		Md <= 0;	
@@ -51,8 +49,7 @@ begin
 		D <= D1 - D2; 
 		P <= P + D;
 	    Md <= M * D;
-	    P1 <= P;
-		R <= P1 + Md;
+		R <= P + Md;
 		S <= S + R;
 		output_data <= S >>> 4;
 	end 					
