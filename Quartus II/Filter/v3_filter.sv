@@ -2,14 +2,21 @@ module v3_filter
 (
 	input wire 	clk,
 	input wire	reset,
-	input wire  [SIZE_ADC_DATA : 0]input_data,
+	input wire  [SIZE_ADC_DATA:0]input_data,
 
-	output reg  [SIZE_FILTER_DATA : 0]output_data
+	output reg  [SIZE_FILTER_DATA:0]output_data
 );
 
 //--------- import of parameters--------------------------------------------------------------------
 import package_settings::*;
 import v3_filter_parameters::*;
+/*
+parameter v3_k=11;
+parameter v3_l=5;
+parameter v3_m1=16;
+parameter v3_m2=1;
+parameter SIZE = 20;
+*/
 //--------------------------------------------------------------------------------------------------
 
 
@@ -81,7 +88,7 @@ begin
 		
 			y[0]<=input_data;
 		
-			dk<=v[0]-y[v3_k];
+			dk<=y[0]-y[v3_k];
 			dl<=y[v3_l]-y[v3_l+1];
 			
 			dlk<=dl*v3_k;
@@ -89,7 +96,7 @@ begin
 			p<=p[1]+dk-dlk;
 			p_1<=p;
 		
-			q<=q[1]+p_m2_3;
+			q<=q[1]+mult2_3;
 			q_1<=q;
 		
 			mult2<=v3_m2*p_1;
