@@ -15,7 +15,7 @@ ptn_Child1=ViewFrame-0
 DocPathName=filter.vwf
 DocumentCLSID={4a9ed22a-e60b-11d1-a0bd-0020affa43f2}
 IsChildFrameDetached=False
-IsActiveChildFrame=True
+IsActiveChildFrame=False
 ptn_Child1=StateMap
 [ProjectWorkspace.Frames.ChildFrames.Document-4.ViewFrame-0.StateMap]
 AFC_SIM_AP_NAME=filter
