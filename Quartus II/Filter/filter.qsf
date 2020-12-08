@@ -63,6 +63,7 @@ set_global_assignment -name SIMULATION_MODE "TIMING USING FAST TIMING MODEL"
 
 set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
+set_global_assignment -name SYSTEMVERILOG_FILE v1_param.sv
 set_global_assignment -name SYSTEMVERILOG_FILE v8_param.sv
 set_global_assignment -name SYSTEMVERILOG_FILE v4_filter_parameters.sv
 set_global_assignment -name SYSTEMVERILOG_FILE v7_param.sv

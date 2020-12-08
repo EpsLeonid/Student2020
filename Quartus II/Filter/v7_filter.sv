@@ -52,6 +52,7 @@ always@(posedge clk) begin
 		end	
 		d_out<=1'b0;
 		m_mult<=1'b0;
+		m_mult1<=1'b0;
 		p_acc<=1'b0;
 		pm_add<=1'b0;
 		output_data<=1'b0;	
