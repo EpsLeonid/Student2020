@@ -1,3 +1,6 @@
+//ATTENTION
+//simulation with Cyclone III EPC3C5F256C6
+
 module ABC(output [15:0] DATA,
 		   input clk,
 		   input [7:0] A,

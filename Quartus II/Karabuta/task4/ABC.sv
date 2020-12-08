@@ -1,3 +1,6 @@
+//ATTENTION
+//simulation with Cyclone III EPC3C5F256C6
+
 import ABC_parameter::lenght;
 
 module ABC(output [2*lenght-1:0] DATA,
