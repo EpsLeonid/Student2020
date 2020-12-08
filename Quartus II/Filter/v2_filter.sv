@@ -47,15 +47,15 @@ osyshestvit` smeshenue vhodnogo cignala na l, k, l+k shagov
 	else
 	begin
 
-		D[0] = input_data;
-		D1 = D[0] - D[l];
-		D2 = D[k] - D[k+l];
+		D[0] <= input_data;
+		D1 <= D[0] - D[l];
+		D2 <= D[k] - D[k+l];
 
-		d  = D1 - D2;
-		M1 = d*M;
-		p = p + d;
-		r = p + M1;
-		s = s + r;
+		d  <= D1 - D2;
+		M1 <= d*M;
+		p <= p + d;
+		r <= p + M1;
+		s <= s + r;
 		output_data <= s >>> 4;
 		for (integer i = 1; i <= k+l; i++) // cdvigaem podanyu signal v sosedniu register
 		begin
