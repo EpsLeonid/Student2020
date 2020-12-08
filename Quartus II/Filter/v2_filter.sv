@@ -10,7 +10,7 @@ module v2_filter(	clk,
 	input wire [SIZE_ADC_DATA+5:0]input_data;
 /* Neobhodimo 20 Bits, 19 chtobu vlezlo znachenie 293 527 i 1 Bit dl`a znaka
 */
-	output reg [SIZE_ADC_DATA + 5:0]output_data;
+	output reg [SIZE_FILTER_DATA+3:0]output_data;
 /* v kachestve peremennou oboznachenu registru c znakoperemennumu znacheniamu
 potomu, chto v algoritme prihodits`a sohranat` rezul`tatu predudyshih vuchesleniu
 */
@@ -56,7 +56,7 @@ osyshestvit` smeshenue vhodnogo cignala na l, k, l+k shagov
 		p = p + d;
 		r = p + M1;
 		s = s + r;
-		output_data <= s;
+		output_data <= s >>> 4;
 		for (integer i = 1; i <= k+l; i++) // cdvigaem podanyu signal v sosedniu register
 		begin
 			D[i]<= D[i-1];
