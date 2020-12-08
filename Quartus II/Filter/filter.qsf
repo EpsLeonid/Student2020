@@ -36,12 +36,12 @@
 # -------------------------------------------------------------------------- #
 
 
-set_global_assignment -name FAMILY "Cyclone III"
+set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE AUTO
 set_global_assignment -name TOP_LEVEL_ENTITY filter
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "9.1 SP2"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:53:20  OCTOBER 15, 2019"
-set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
+set_global_assignment -name LAST_QUARTUS_VERSION 15.1.0
 set_global_assignment -name USE_CONFIGURATION_DEVICE ON
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -63,6 +63,8 @@ set_global_assignment -name SIMULATION_MODE "TIMING USING FAST TIMING MODEL"
 
 set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SYSTEMVERILOG_FILE v5_param.sv
 set_global_assignment -name SYSTEMVERILOG_FILE v3_filter_parameters.sv
 set_global_assignment -name SYSTEMVERILOG_FILE v10_filter_parameters.sv
 set_global_assignment -name SYSTEMVERILOG_FILE v1_param.sv
@@ -71,4 +73,3 @@ set_global_assignment -name SYSTEMVERILOG_FILE v4_filter_parameters.sv
 set_global_assignment -name SYSTEMVERILOG_FILE v7_param.sv
 set_global_assignment -name SYSTEMVERILOG_FILE package_settings.sv
 set_global_assignment -name SYSTEMVERILOG_FILE parameters_v2.sv
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
