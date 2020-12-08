@@ -74,7 +74,7 @@ begin
 	
 	else 											// zero shift
 		begin
-			for(int i=1; i<v3_k; i++)
+			for(int i=1; i<v9_k; i++)
 				begin
 					y[i+1]<=y[i];
 				end
