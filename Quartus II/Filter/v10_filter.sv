@@ -1,67 +1,65 @@
-import v10_filter_parameters ::*;
-
+import v10_filter_parameters::*;
 module v10_filter (clk, reset, input_data, output_data);
 
-import package_settings::*;
+	//--------------------------------------------------------------- ports initialization
+	input wire signed [SIZE_ADC_DATA-1:0] input_data;
+	input wire clk, reset;
+	output reg signed [SIZE_FILTER_DATA-1:0] output_data=1'b0;// output signal
+	//***********************************************************************************
 
-input wire signed [SIZE_ADC_DATA-1:0] input_data;
-input wire clk, reset;
+	//---------------------------------------------------------------- internal registers
 
-output reg signed [(SIZE_ADC_DATA+M_length_var10):0] output_data=1'b0;			// last ever-increasing accumulator; take the number of digits with a margin;
+	reg signed [SIZE_ADC_DATA-1:0]   delay_line  [(l_var10+k_var10):0]; // input data buffer
+	reg signed [SIZE_ADC_DATA+1:0] d_line=1'b0; // d-part of signal
 
-reg signed [SIZE_ADC_DATA-1:0]   d_buffer  [(l_var10+k_var10):0]; 			// buffer of delay-line
+	//--------------------------------------------------------------- additional mult-buffers
+	reg signed [SIZE_ADC_DATA+Mw_var10:0] m_buf=1'b0; 
+	reg signed [SIZE_ADC_DATA+Mw_var10:0] m_buf2=1'b0;
+	//----------------------------------------------------------------------------------
 
-
-//------------------------------------------  +1 digit for sign (-/+)------------------------------------------------------------------------------------------------------
-reg signed [SIZE_ADC_DATA+1:0] d_out=1'b0; 						// max d_out=2*SIZE_ADC_DATA; number of digits=SIZE_ADC_DATA+1; 
-reg signed [SIZE_ADC_DATA+M_length_var10:0] m_mult=1'b0; 				// 1st mult buffer max number SIZE_ADC_DATA+ M_length;
-reg signed [SIZE_ADC_DATA+M_length_var10:0] m_mult1=1'b0; 				// 2nd mult buffer max number SIZE_ADC_DATA+ M_length;
-reg signed [(SIZE_ADC_DATA+M_length_var10):0] p_acc=1'b0; 				// ever-increasing accumulator; take the number of digits with a margin;
-reg signed [(SIZE_ADC_DATA+M_length_var10):0] pm_add=1'b0; 				// last adder; take the number of digits with a margin;
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-//------------------------------------------ write 0 in all elements of d_buffer ------------------------------------------------------------------------------------------
-initial begin
-	for (int j=0; j<=l_var10+k_var10; j++) begin
-		d_buffer[j]=1'b0;
-	end
-end
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
+	reg signed [(SIZE_ADC_DATA+Mw_var10):0] p_line=1'b0; // p-part of signal
+	reg signed [(SIZE_ADC_DATA+Mw_var10):0] sig_add=1'b0; 
+	reg signed [(SIZE_ADC_DATA+Mw_var10):0] s_line=1'b0; // s-part of signal
+	//***********************************************************************************
 
 always@(posedge clk) begin
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------------- 
-	d_buffer[0]=input_data; 							// write input data in buffer
-	d_out=input_data-(d_buffer[l_var10]+d_buffer[k_var10])+d_buffer[k_var10+l_var10]; 	// input signal with all delays
-//----------------------------------------------------------------------------------------------------------------------------------------------------------
-	m_mult1<=(input_data-d_buffer[l_var10])*M_var7; 					// 1st mult buffer
-	m_mult<=(d_buffer[k_var10+l_var10]-d_buffer[k_var10])*M_var10; 			//2nd mult buffer
-	p_acc<=(p_acc+d_out);
-	pm_add<=(m_mult+m_mult1+p_acc);
-	output_data<=output_data+pm_add; 						// total output sihnal
-//------------------------------------------ shift data in buffer -----------------------------------------------------------------------------------------	
-	for (int i=1; i<=k_var10+l_var10; i++) begin
-		d_buffer[i]<=d_buffer[i-1];
-	end
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	delay_line[0]=input_data; // write input data in 0 ellement of array
+	d_line=input_data-(delay_line[l_var10]+delay_line[k_var10])+delay_line[k_var10+l_var10]; // d-line total
 
-//------------------------------------------ reset everything that is --------------------------------------------------------------------------------------------	
+	//---------------------------------------------------------------- mult buffers
+	m_buf2<=(input_data-delay_line[l_var10])*M_var10; // 1st mult buffer
+	m_buf<=(delay_line[k_var10+l_var10]-delay_line[k_var10])*M_var10; //2nd mult buffer
+	//***********************************************************************
+
+	p_line<=p_line+d_line;
+	sig_add<=(m_buf+m_buf2+p_line);
+	
+	s_line<=s_line+sig_add; // total output sihnal
+	if (s_line>16'd65535)	output_data<=16'd65535; // overflow check
+	else output_data<=s_line;
+
+//------------------------------------------ shift data in delay_line
+	for (int i=1; i<=k_var10+l_var10; i++) begin
+		delay_line[i]<=delay_line[i-1];
+	end
+//**************************************************************
+
+
+//------------------------------------------ reset-block
 	if (reset==1'b0) begin
 		for (int i=0; i<=l_var10+k_var10; i++) begin
-			d_buffer[i]<=1'b0;
+			delay_line[i]<=1'b0;
 		end	
-		d_out<=1'b0;
-		m_mult<=1'b0;
-		p_acc<=1'b0;
-		pm_add<=1'b0;
-		output_data<=1'b0;		
+		d_line<=1'b0;
+		m_buf<=1'b0;
+		m_buf2<=1'b0;
+		p_line<=1'b0;
+		sig_add<=1'b0;
+		output_data<=1'b0;	
+		s_line<=1'b0;	
 	end
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------	
+//------------------------------------------	
 end 
  
 endmodule
-

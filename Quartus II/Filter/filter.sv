@@ -124,13 +124,13 @@ module filter (
 		.reset                                                (reset),
 		.input_data                                           (output_data_exp_sig_gen),
 		.output_data                                          (output_data_v9));
-	
+*/	
 	v10_filter FilterV10 (
 		.clk                                                  (clk),
 		.reset                                                (reset),
 		.input_data                                           (output_data_exp_sig_gen),
 		.output_data                                          (output_data_v10));
 	
-*/
+
 //-----------------------------------------------------------------------------
 endmodule
