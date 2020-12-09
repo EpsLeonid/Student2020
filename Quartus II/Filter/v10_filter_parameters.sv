@@ -1,8 +1,7 @@
 package v10_filter_parameters;
 
-	parameter k_var10=4'd10;
-	parameter l_var10=3'd6;
-	parameter M_var10=4'd15;
-	parameter Mw_var10=3'd4;
-	
+	parameter   k_v10=4'd10, 
+				l_v10=3'd6,
+				M_v10=5'd16,
+				M_length_v10=3'd4;	
 endpackage

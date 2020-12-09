@@ -1,65 +1,67 @@
-import v10_filter_parameters::*;
 module v10_filter (clk, reset, input_data, output_data);
+import package_settings::*;
+import v10_filter_parameters::*;
+//parameter  k_v10=4'd10, l_v10=3'd6, M_v10=5'd16, M_length_v10=3'd4;
 
-	//--------------------------------------------------------------- ports initialization
-	input wire signed [SIZE_ADC_DATA-1:0] input_data;
-	input wire clk, reset;
-	output reg signed [SIZE_FILTER_DATA-1:0] output_data=1'b0;// output signal
-	//***********************************************************************************
+input wire unsigned [SIZE_ADC_DATA-1:0] input_data;
+input wire clk, reset;
+output reg unsigned [SIZE_FILTER_DATA-1:0] output_data=1'b0;
+		
+reg unsigned [SIZE_ADC_DATA-1:0] buffer_data  [(l_v10 + k_v10):0];
+reg unsigned [SIZE_ADC_DATA+1:0] d_kl_v10 = 1'b0; 					
+reg unsigned [SIZE_ADC_DATA+M_length_v10:0] r_buff1_v10 = 1'b0; 				
+reg unsigned [SIZE_ADC_DATA+M_length_v10:0] r_buff2_v10 = 1'b0; 				
+reg unsigned [SIZE_ADC_DATA+M_length_v10:0] p_accum_v10 = 1'b0; 			
+reg unsigned [SIZE_ADC_DATA+M_length_v10:0] r_tot_v10 = 1'b0; 
+reg unsigned [SIZE_ADC_DATA+M_length_v10:0] output_buffer = 1'b0;		
+//--------------------------------------------------------------------------------------------------//		
 
-	//---------------------------------------------------------------- internal registers
+initial begin
+	for (int j=0; j <= l_v10 + k_v10; j++) 
+	begin
+		buffer_data[j]=1'b0;
+	end
+end
 
-	reg signed [SIZE_ADC_DATA-1:0]   delay_line  [(l_var10+k_var10):0]; // input data buffer
-	reg signed [SIZE_ADC_DATA+1:0] d_line=1'b0; // d-part of signal
+always@(posedge clk)
+begin
 
-	//--------------------------------------------------------------- additional mult-buffers
-	reg signed [SIZE_ADC_DATA+Mw_var10:0] m_buf=1'b0; 
-	reg signed [SIZE_ADC_DATA+Mw_var10:0] m_buf2=1'b0;
-	//----------------------------------------------------------------------------------
-
-	reg signed [(SIZE_ADC_DATA+Mw_var10):0] p_line=1'b0; // p-part of signal
-	reg signed [(SIZE_ADC_DATA+Mw_var10):0] sig_add=1'b0; 
-	reg signed [(SIZE_ADC_DATA+Mw_var10):0] s_line=1'b0; // s-part of signal
-	//***********************************************************************************
-
-always@(posedge clk) begin
-
-	delay_line[0]=input_data; // write input data in 0 ellement of array
-	d_line=input_data-(delay_line[l_var10]+delay_line[k_var10])+delay_line[k_var10+l_var10]; // d-line total
-
-	//---------------------------------------------------------------- mult buffers
-	m_buf2<=(input_data-delay_line[l_var10])*M_var10; // 1st mult buffer
-	m_buf<=(delay_line[k_var10+l_var10]-delay_line[k_var10])*M_var10; //2nd mult buffer
-	//***********************************************************************
-
-	p_line<=p_line+d_line;
-	sig_add<=(m_buf+m_buf2+p_line);
+	buffer_data[0]=input_data; 							
+	d_kl_v10 = input_data - (buffer_data[l_v10] + buffer_data[k_v10]) + buffer_data[k_v10 + l_v10]; 
 	
-	s_line<=s_line+sig_add; // total output sihnal
-	if (s_line>16'd65535)	output_data<=16'd65535; // overflow check
-	else output_data<=s_line;
+	r_buff1_v10 <= (input_data + buffer_data[k_v10 + l_v10]) * M_v10; 					
+	r_buff2_v10 <= (buffer_data[l_v10]+ buffer_data[k_v10]) * M_v10; 			
+	
+	p_accum_v10 <= (p_accum_v10 + d_kl_v10);
+	r_tot_v10 <= (r_buff1_v10 - r_buff2_v10) + p_accum_v10;
+	
+	output_buffer <= output_buffer + r_tot_v10; 	
+		
+	if (output_buffer>16'd65535) begin	output_data<=16'd65535; end
+	else begin output_data<=output_buffer; end
+				
+	for (int i=1; i <= k_v10 + l_v10; i++)
+		begin
+		buffer_data[i] <= buffer_data[i - 1];
+		end
 
-//------------------------------------------ shift data in delay_line
-	for (int i=1; i<=k_var10+l_var10; i++) begin
-		delay_line[i]<=delay_line[i-1];
-	end
-//**************************************************************
 
 
-//------------------------------------------ reset-block
-	if (reset==1'b0) begin
-		for (int i=0; i<=l_var10+k_var10; i++) begin
-			delay_line[i]<=1'b0;
-		end	
-		d_line<=1'b0;
-		m_buf<=1'b0;
-		m_buf2<=1'b0;
-		p_line<=1'b0;
-		sig_add<=1'b0;
-		output_data<=1'b0;	
-		s_line<=1'b0;	
-	end
-//------------------------------------------	
+	if (reset == 1'b0) 
+		begin
+			for (int i=0; i <= l_v10 + k_v10; i++)
+				begin
+					buffer_data[i] <= 1'b0;
+				end	
+			d_kl_v10 <= 1'b0;
+			r_buff1_v10 <= 1'b0;
+			r_buff2_v10 <= 1'b0;
+			p_accum_v10 <= 1'b0;
+			r_tot_v10 <= 1'b0;
+			output_buffer <= 1'b0;
+			output_data <= 1'b0;		
+		end
 end 
  
 endmodule
+
