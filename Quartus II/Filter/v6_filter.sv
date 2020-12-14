@@ -99,18 +99,16 @@ begin
 			
 				p<=p+dk_d1k;
 				q<=q+mult2;
-				s<=s+q_1;
+				s<=s+q+mult1;;
 				
 				mult2<= m2*p;
 				mult1<=m1*p;
 			
-				q_delay<=q;
-				dk_delay<=dk;
 				
 				dlk<=v6_k*d1_delay[v6_l-1];
 				
-				dk_d1k<=dk_delay-dlk;
-				q_1<=q_delay+mult1;
+				dk_d1k<=dk-dlk;
+				
 				
 			
 				output_data<=s>>>8;

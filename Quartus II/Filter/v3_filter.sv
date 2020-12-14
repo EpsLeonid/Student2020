@@ -93,18 +93,18 @@ always @ (posedge clk or negedge reset)
 			
 				p<=p+dk_d1k;
 				q<=q+mult2;
-				s<=s+q_1;
+				s<=q/*_delay*/+mult1;
 				
 				mult2<= m2*p;
 				mult1<=m1*p;
 			
-				q_delay<=q;
-				dk_delay<=dk;
+				//q_delay<=q;
+				//dk_delay<=dk;
 				
 				dlk<=v3_k*d1_delay[v3_l-1];
 				
-				dk_d1k<=dk_delay-dlk;
-				q_1<=q_delay+mult1;
+				dk_d1k<=dk/*_delay*/-dlk;
+				//q_1<=q/*_delay*/+mult1;
 				
 			
 				output_data<=s>>>8;
