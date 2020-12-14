@@ -2,54 +2,118 @@ module v3_filter
 (
 	input wire 	clk,
 	input wire	reset,
-	input wire  [SIZE_ADC_DATA:0]input_data,
+	input wire  [SIZE_ADC_DATA-1:0]input_data,
 
-	output reg  [SIZE_FILTER_DATA:0]output_data
+	output reg  [SIZE_ADC_DATA-1:0]output_data
 );
 
 //--------- import of parameters--------------------------------------------------------------------
 import package_settings::*;
 import v3_filter_parameters::*;
-/*
-parameter v3_k=11;
-parameter v3_l=5;
-parameter v3_m1=16;
-parameter v3_m2=1;
-parameter SIZE = 20;
-*/
 //--------------------------------------------------------------------------------------------------
 
 
 //-------- variable equations from the task---------------------------------------------------------
-	reg			[v3_k:0][SIZE_ADC_DATA:0]y;
-
-	reg			[SIZE-1:0]dk;
-	reg			[SIZE-1:0]dl;
+	reg			[(SIZE_ADC_DATA-1)*4:0]y[v3_k:0];
 	
-	reg			[SIZE-1:0]q;
-	reg			[SIZE-1:0]p;
-	reg			[SIZE-1:0]s;
-	
-	reg			[SIZE-1:0]dlk;   					// k*dl
 
-	reg			[SIZE-1:0]mult2; 					// m2*p(n)
-	reg			[SIZE-1:0]mult1; 					// m1*p(n)
+	reg			[(SIZE_ADC_DATA-1)*4:0]dk;
+	reg			[(SIZE_ADC_DATA-1)*4:0]dl;
+	
+	reg			[(SIZE_ADC_DATA-1)*4:0]q;
+	reg			[(SIZE_ADC_DATA-1)*4:0]p;
+	reg			[(SIZE_ADC_DATA-1)*4:0]s;
+	
+	reg			[(SIZE_ADC_DATA-1)*4:0]dlk;   					// k*dl
+	reg			[(SIZE_ADC_DATA-1)*4:0]dk_delay; 				// dk-dlk
+	reg			[(SIZE_ADC_DATA-1)*4:0]mult2; 					// m2*p
+	reg			[(SIZE_ADC_DATA-1)*4:0]mult1; 					// m1*p
 //--------------------------------------------------------------------------------------------------
-
+	
+	reg			[(SIZE_ADC_DATA-1)*4:0]dk_d1k;
+	reg			[(SIZE_ADC_DATA-1)*4:0]q_1;
 	
 //------------- form a delay -----------------------------------------------------------------------
-
-	reg			[SIZE-1:0]p_1;
-	reg			[SIZE-1:0]q_1;
-	reg			[SIZE-1:0]s_1;
-
-	reg			[SIZE-1:0]mult2_1;
-	reg			[SIZE-1:0]mult2_2;
-	reg			[SIZE-1:0]mult2_3;
+	reg         [(SIZE_ADC_DATA-1)*4:0]d1_delay[v3_l-1:0];
+	reg         [(SIZE_ADC_DATA-1)*4:0]q_delay;
 //--------------------------------------------------------------------------------------------------
 
+always @ (posedge clk or negedge reset) 
+	begin
+		if (!reset) 
+			begin
+				dk<=0;
+				dl<=0;
+				d1_delay[0]<=0;
+				
+				for (integer i=1; i<=v3_l-1; i++) 
+					begin
+						d1_delay[i]<=0;
+					end
+				
+				p<=0;
+				q<=0;
+				s<=0;
+				
+				mult1<=0;
+				mult2<=0;
+				
+				q_delay<=0;
+				q_1<=0;
+				
+				dlk<=0;
+				dk_delay<=0;
+				dk_d1k<=0;
+				
+				output_data<=0;
+			
+				for (integer i=0; i<=v3_k; i++) 
+					begin
+						y[i]<=0;
+					end
+			end
+		else 
+			begin
+				y[0]<=input_data;
+				
+			for (integer i=1; i<=v3_k; i++) 
+				begin
+					y[i]<=y[i-1];
+				end
+				
+				dk<=y[0]-y[v3_k];
+				dl<=y[0]-y[1];
+			
+				d1_delay[0]<=dl;
+			
+			for (integer i=1; i<=v3_k-1; i++) 
+				begin
+					d1_delay[i]<=d1_delay[i-1];
+				end
+			
+				p<=p+dk_d1k;
+				q<=q+mult2;
+				s<=s+q_1;
+				
+				mult2<= m2*p;
+				mult1<=m1*p;
+			
+				q_delay<=q;
+				dk_delay<=dk;
+				
+				dlk<=v3_k*d1_delay[v3_l-1];
+				
+				dk_d1k<=dk_delay-dlk;
+				q_1<=q_delay+mult1;
+				
+			
+				output_data<=s>>>8;
+	//--------------------------------------------------------------------------------------
+		end
+	end
 	
-always @ (posedge clk) 
+	
+/*always @ (posedge clk) 
 begin
 //--------- check condition of reset----------------------------------------------------------------
 	if (!reset) 
@@ -113,5 +177,5 @@ begin
 			output_data<=s_1;
 		end
 end
-
+*/
 endmodule
