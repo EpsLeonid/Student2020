@@ -101,8 +101,8 @@ begin
 				q<=q+mult2;
 				s<=s+q+mult1;;
 				
-				mult2<= m2*p;
-				mult1<=m1*p;
+				mult2<=v6_m2*p;
+				mult1<=v6_m1*p;
 			
 				
 				dlk<=v6_k*d1_delay[v6_l-1];

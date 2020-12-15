@@ -95,8 +95,8 @@ always @ (posedge clk or negedge reset)
 				q<=q+mult2;
 				s<=q/*_delay*/+mult1;
 				
-				mult2<= m2*p;
-				mult1<=m1*p;
+				mult2<=v3_m2*p;
+				mult1<=v3_m1*p;
 			
 				//q_delay<=q;
 				//dk_delay<=dk;

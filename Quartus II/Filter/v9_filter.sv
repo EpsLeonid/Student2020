@@ -79,17 +79,17 @@ module v9_filter (
 			end
 			
 			k_d1														<= k_9 * d1_delay[l_9-1];
-			dk_delay 													<= dk;
-			dk_k_d1														<= dk_delay - k_d1;
+			//dk_delay 													<= dk;
+			dk_k_d1														<= dk/*_delay*/ - k_d1;
 			p															<= p + dk_k_d1;
 			
 			m2_p														<= m2 * p;
 			q														<= q + m2_p;
 			
 			m1_p														<= m1 * p;
-			q_delay														<= q;
-			q_m1_p														<= q_delay + m1_p;
-			s															<= s + q_m1_p ;
+			//q_delay														<= q;
+			//q_m1_p														<= q_delay + m1_p;
+			s															<= s + /*q_m1_p*/ q + m1_p;
 			
 			output_data													<= s >>> 8;
 	//--------------------------------------------------------------------------------------
