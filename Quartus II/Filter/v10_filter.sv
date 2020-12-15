@@ -42,15 +42,15 @@ always@(posedge clk or negedge reset) begin
 	else begin
 
 	buffer_data[0]<=input_data; 							
-	d_kl_v10_1 <= buffer_data[0]-buffer_data[l_v10];
-	d_kl_v10_2 <= buffer_data[k_v10+l_v10]-buffer_data[k_v10];
-	d_kl_v10 <= d_kl_v10_1+d_kl_v10_2;
+	d_kl_v10_1 <= buffer_data[0] + buffer_data[k_v10 + l_v10];
+	d_kl_v10_2 <= buffer_data[l_v10] + buffer_data[k_v10];
+	d_kl_v10 <= d_kl_v10_1 - d_kl_v10_2;
 	
 	m_buff_v10 <=  d_kl_v10*M_v10; 					
 	
-	p_accum_v10 <= p_accum_v10+d_kl_v10;
-	r_tot_v10 <= r_tot_v10+m_buff_v10;
-	s_tot_v10 <= s_tot_v10+r_tot_v10;
+	p_accum_v10 <= p_accum_v10 + d_kl_v10;
+	r_tot_v10 <= r_tot_v10 + m_buff_v10;
+	s_tot_v10 <= s_tot_v10 + r_tot_v10;
 	
 	output_data <= s_tot_v10 >> 3'd4;	
 
