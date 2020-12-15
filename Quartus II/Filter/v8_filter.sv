@@ -13,10 +13,10 @@ module v8_filter (clk, reset, input_data, output_data);
 	reg signed [SIZE_ADC_DATA+1:0] dfrst=1'b0; // d-line 
 	reg signed [SIZE_ADC_DATA+1:0] dscnd=1'b0; // d-line 
 	reg signed [SIZE_ADC_DATA+1:0] dlast=1'b0; // d-line 
-	reg signed [SIZE_ADC_DATA+3:0] mult=1'b0; // buffer of M-multiplication 
-	reg signed [(SIZE_ADC_DATA+3):0] p_part=1'b0; //  p-line
-	reg signed [(SIZE_ADC_DATA+3):0] r_part=1'b0;  
-	reg signed [(SIZE_ADC_DATA+3):0] s_part=1'b0; 
+	reg signed [SIZE_ADC_DATA+4:0] mult=1'b0; // buffer of M-multiplication 
+	reg signed [(SIZE_ADC_DATA+4):0] p_part=1'b0; //  p-line
+	reg signed [(SIZE_ADC_DATA+4):0] r_part=1'b0;  
+	reg signed [(SIZE_ADC_DATA+4):0] s_part=1'b0; 
 
 //*********************************************************************************************
 

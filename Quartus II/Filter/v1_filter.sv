@@ -12,10 +12,10 @@ module v1_filter (clk, reset, input_data, output_data);
 	reg signed [SIZE_ADC_DATA+1:0] d_line1=1'b0; // d-part1 of signal
 	reg signed [SIZE_ADC_DATA+1:0] d_line2=1'b0; // d-part1 of signal
 	reg signed [SIZE_ADC_DATA+1:0] d_tot=1'b0; // d data with all delays
-	reg signed [SIZE_ADC_DATA+3:0] m_buf=1'b0; 
-	reg signed [(SIZE_ADC_DATA+3):0] p_line=1'b0; // p-part of signal
-	reg signed [(SIZE_ADC_DATA+3):0] r_line=1'b0; 
-	reg signed [(SIZE_ADC_DATA+3):0] s_line=1'b0; // s-part of signal
+	reg signed [SIZE_ADC_DATA+4:0] m_buf=1'b0; 
+	reg signed [(SIZE_ADC_DATA+4):0] p_line=1'b0; // p-part of signal
+	reg signed [(SIZE_ADC_DATA+4):0] r_line=1'b0; 
+	reg signed [(SIZE_ADC_DATA+4):0] s_line=1'b0; // s-part of signal
 	//***********************************************************************************
 
 always@(posedge clk or negedge reset) begin
