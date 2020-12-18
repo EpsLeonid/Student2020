@@ -1,6 +1,6 @@
 package v5_param;
 
-parameter k=16;
-parameter l=6;
-parameter m=6;
+parameter M_5 = 16;
+parameter l_5 = 6;
+parameter k_5 = 6;
 endpackage

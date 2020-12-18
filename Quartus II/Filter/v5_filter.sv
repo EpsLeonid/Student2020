@@ -1,42 +1,45 @@
-import package_settings::*;
-//import v5_param::*;
-import v5_param::k;
-import v5_param::l;
-import v5_param::m;
+	import v5_param ::*;
+module v5_filter(	clk, 
+						reset, 
+						input_data, 
+						output_data,
+);
 
-module v5_filter (clk,reset,input_data,output_data );
-
+	
 	input wire clk, reset;
-	
-	input wire signed [SIZE_ADC_DATA-1:0] input_data;
-	
-	output reg signed [SIZE_FILTER_DATA-1:0] output_data;
-	
-
-	reg signed [SIZE_ADC_DATA + 5:0] y[k+l:0];
-
+	input wire [SIZE_ADC_DATA+5:0]input_data;
+/* Neobhodimo 20 Bits, 19 chtobu vlezlo znachenie 293 527 i 1 Bit dl`a znaka
+*/
+	output reg [SIZE_FILTER_DATA+3:0]output_data;
+/* v kachestve peremennou oboznachenu registru c znakoperemennumu znacheniamu
+potomu, chto v algoritme prihodits`a sohranat` rezul`tatu predudyshih vuchesleniu
+*/
+	reg signed [SIZE_ADC_DATA + 5:0] D[k_5+l_5:0];/* etot massive registrov ny}I{en dl`a togo, chtobu
+osyshestvit` smeshenue vhodnogo cignala na l, k, l+k shagov 
+*/
 	reg signed [SIZE_ADC_DATA + 5:0] p, d, s, r;
 	reg signed [SIZE_ADC_DATA + 5:0] D2, D1;
-	reg signed [SIZE_ADC_DATA + 5:0] Md;	
+	reg signed [SIZE_ADC_DATA + 5:0] M1;	
 	
-	always @(posedge clk or negedge reset)
+	always @(posedge clk or negedge reset)// poka clk  podan u sbros
 
 		begin
 			if (!reset)
 		begin
-
-		y[0] <= 0;
+// pri  sbrosa, dannue obnulauyt`sa, a massive D neobhodimo otchistit`
+		D[0] <= 0;
 		D1 <= 0;
 		D2 <= 0;
+
 		d  <= 0;
-		Md <= 0;
+		M1 <= 0;
 		p <= 0;
 		r <= 0;
 		s <= 0;
 		output_data <= 0;
-		for (integer i = 0; i <= k+l; i++)
+		for (integer i = 0; i <= k_5+l_5; i++)
 		begin
-			y[i]<= 0;
+			D[i]<= 0;
 		end
 
 	end
@@ -44,19 +47,19 @@ module v5_filter (clk,reset,input_data,output_data );
 	else
 	begin
 
-		y[0] <= input_data;
-		D1 <= y[0] - y[l];
-		D2 <= y[k] - y[k+l];
+		D[0] <= input_data;
+		D1 <= D[0] - D[l_5];
+		D2 <= D[k_5] - D[k_5+l_5];
 
 		d  <= D1 - D2;
-		Md <= m*d;
+		M1 <= d*M_5;
 		p <= p + d;
-		r <= p + Md;
+		r <= p + M1;
 		s <= s + r;
 		output_data <= s >>> 4;
-		for (integer i = 1; i <= k+l; i++) 
+		for (integer i = 1; i <= k_5+l_5; i++) // cdvigaem podanyu signal v sosedniu register
 		begin
-			y[i]<= y[i-1];
+			D[i]<= D[i-1];
 		end
 
 	end

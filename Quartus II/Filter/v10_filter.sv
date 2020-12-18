@@ -1,68 +1,57 @@
-module v10_filter (clk, reset, input_data, output_data);
-import v10_filter_parameters::*;
+import package_settings::*;
 
-input wire signed [SIZE_ADC_DATA-1:0] input_data;
-input wire clk, reset;
-output reg signed [SIZE_FILTER_DATA-1:0] output_data=1'b0;
-		
-reg signed [SIZE_ADC_DATA-1:0] buffer_data  [(l_v10 + k_v10):0];
-reg signed [SIZE_ADC_DATA+1:0] d_kl_v10 = 1'b0; 	
-reg signed [SIZE_ADC_DATA+1:0] d_kl_v10_1 = 1'b0; 
-reg signed [SIZE_ADC_DATA+1:0] d_kl_v10_2 = 1'b0; 								
-reg signed [SIZE_ADC_DATA+3:0] m_buff_v10 = 1'b0; 	
-reg signed [SIZE_ADC_DATA+3:0] p_accum_v10 = 1'b0; 							
-reg signed [SIZE_ADC_DATA+3:0] r_tot_v10 = 1'b0; 				
-reg signed [SIZE_ADC_DATA+3:0] s_tot_v10 = 1'b0; 			
-		
-//--------------------------------------------------------------------------------------------------//		
-/*
-initial begin
-	for (int j=0; j <= l_v10 + k_v10; j++) 
-	begin
-		buffer_data[j]=1'b0;
-	end
-end*/
+import v10_filter_parameters::k_10;
+import v10_filter_parameters::l_10;
+import v10_filter_parameters::M_10;
 
-always@(posedge clk or negedge reset) begin
+module v10_filter
+( 
+input wire clk,
+input wire reset,
+input wire signed [SIZE_ADC_DATA-1:0] input_data,
+output reg signed [SIZE_FILTER_DATA-1:0] output_data
+);
 
-	if (reset == 1'b0)  begin
-			for (int i=0; i <= l_v10 + k_v10; i++) begin
-					buffer_data[i] <= 1'b0;
-			end	
-			d_kl_v10 <= 1'b0;
-			d_kl_v10_1 <= 1'b0;
-			d_kl_v10_2 <= 1'b0;
-			p_accum_v10 <= 1'b0;
-			r_tot_v10 <= 1'b0;
-			m_buff_v10 <= 1'b0;
-			output_data <= 1'b0;	
-			s_tot_v10 <= 1'b0;
+reg [SIZE_ADC_DATA+6:0] P;
+reg [SIZE_ADC_DATA+6:0] Md;
+reg [SIZE_ADC_DATA+6:0] S;
+reg [SIZE_ADC_DATA+6:0] R;
+reg [SIZE_ADC_DATA+6:0] V [k_10+l_10:0];
+reg [SIZE_ADC_DATA+6:0] D;
+reg	[SIZE_ADC_DATA+6:0] D1;
+reg	[SIZE_ADC_DATA+6:0] D2;
+
+always @( posedge clk or posedge !reset)
+begin 
+	if(!reset)
+begin
+		for(int I=0; I <= k_10+l_10 ; I++)
+		begin
+			V[I] <= 0;
 		end
-		
-	else begin
-
-	buffer_data[0]<=input_data; 							
-	d_kl_v10_1 <= buffer_data[0] -buffer_data[l_v10];
-	d_kl_v10_2 <= buffer_data[k_v10 + l_v10] - buffer_data[k_v10];
-	d_kl_v10 <= d_kl_v10_1 + d_kl_v10_2;
+		D <= 0;	
+		D1 <= 0;	
+		D2 <= 0;	
+		P <= 0;		
+		R <= 0;	
+		S <= 0;	
+		Md <= 0;	
+		output_data <= 0;
+		end
 	
-	m_buff_v10 <=  d_kl_v10*M_v10; 					
-	
-	p_accum_v10 <= p_accum_v10 + d_kl_v10;
-	r_tot_v10 <= r_tot_v10 + m_buff_v10;
-	s_tot_v10 <= s_tot_v10 + r_tot_v10;
-	
-	output_data <= s_tot_v10 >> 3'd4;	
-
-				
-	for (int i=1; i <= k_v10 + l_v10; i++) begin
-		buffer_data[i] <= buffer_data[i - 1];
-	end
-
-	end
-
-
-end 
- 
+	else
+begin
+		V[0] <= input_data;	
+		for(int I=1; I <= k_10+l_10; I++)
+			V[I] <= V[I-1];
+		D1 <= V[0] - V[k_10];
+		D2 <= V[l_10] - V[k_10+l_10];
+		D <= D1 - D2; 
+		P <= P + D;
+	    Md <= M_10 * D;
+		R <= P + Md;
+		S <= S + R;
+		output_data <= S >>> 4;
+	end 					
+end
 endmodule
-
