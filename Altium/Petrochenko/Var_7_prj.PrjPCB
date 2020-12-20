@@ -72,7 +72,7 @@ GenerateClassCluster=0
 DocumentUniqueId=UYLMOIMO
 
 [GeneratedDocument1]
-DocumentPath=Project Outputs for Var_7_prj\Design Rule Check - Copy of Var_7_PCB.html
+DocumentPath=Project Outputs for Var_7_prj\Design Rule Check - Var_7_PCB.html
 DItemRevisionGUID=
 
 [Configuration1]
@@ -194,7 +194,7 @@ OutputDefault20=0
 [OutputGroup2]
 Name=Simulator Outputs
 Description=
-TargetPrinter=Microsoft Print to PDF
+TargetPrinter=Fax
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 
 [OutputGroup3]
