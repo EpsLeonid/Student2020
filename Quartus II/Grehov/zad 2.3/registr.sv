@@ -1,27 +1,30 @@
-import  registr_parameter::width;
+import  registr_parameter::size;
 
-module registr(clk,DATA_OUT,mult,A,B,C,C1);
+module registr(clk, DATA_OUT, A,B,C);
 
 input wire clk;
 
-input reg [width-1:0]A;
-input reg [width-1:0]B;
-input reg [width-1:0]C;
+input reg [size-1:0]A;
+input reg [size-1:0]B;
+input reg [size-1:0]C;
 
+output reg [(2*size):0]DATA_OUT;
+reg [(2*size):0]mult;
+reg [(2*size):0]C1;
 
-reg [2*width-1:0]mult, C1;
-output reg [2*width-1:0]DATA_OUT;
-
-
+/*always @(posedge clk)
+begin
+C1<=C;
+end
+*/
 always @(posedge clk)
 
 begin
 
 mult <=A*B;
-C1 <=C;
-DATA_OUT <=mult+C1;
+//mult1<=mult;
+DATA_OUT <= mult+C;
+
 end
 
 endmodule 
-
-

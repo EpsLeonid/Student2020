@@ -1,3 +1,3 @@
 package registr_parameter;
-parameter width=8;
+parameter size=8;
 endpackage 
