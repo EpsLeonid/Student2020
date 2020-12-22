@@ -1,19 +1,19 @@
-//import  registr_parameter ::*;
+import  registr_parameter ::*;
 module registr(
 
 
 
 input wire clk,
 
-input reg [width-1:0]A,
-input reg [width-1:0]B,
-input reg [width-1:0]C,
+input reg [size-1:0]A,
+input reg [size-1:0]B,
+input reg [size-1:0]C,
 
-output reg [2*width-1:0]data,DATA
+output reg [2*size-1:0]data,DATA
 );
- reg [2*width-1:0]MULT;
- reg [width:0]C1,C2;
-parameter width=8;
+ reg [2*size-1:0]MULT;
+ reg [size:0]C1,C2;
+//parameter size=8;
 
 always @(posedge clk)
 begin
