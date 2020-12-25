@@ -7,7 +7,7 @@ module register(DATA_OUT, A, B, C, CLK);
 	reg signed [2*SIZE-1:0]M;
 	always @*
 	begin
-	M <= A*B;
-	DATA_OUT <= M + C; 
+	M = A*B;
+	DATA_OUT = M + C; 
 	end
 endmodule
